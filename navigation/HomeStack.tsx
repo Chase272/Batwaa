@@ -11,6 +11,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { DocumentView } from 'Views/DocumentView';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { CameraScannerView } from 'Views/CameraScannerView';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +20,11 @@ export const HomeStack = () => {
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeView} />
       <Stack.Screen options={{ headerShown: false }} name="Document" component={DocumentView} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="CameraScannerScreen"
+        component={CameraScannerView}
+      />
     </Stack.Navigator>
   );
 };

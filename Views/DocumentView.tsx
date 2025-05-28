@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
-import Pdf from 'react-native-pdf';
 
 export const DocumentView = () => {
   const [DocNumber, setDocNumber] = useState<string>('');
