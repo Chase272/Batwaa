@@ -15,7 +15,8 @@ export default function ImportDocsView() {
 
   const openDocuments = async () => {
     try {
-      const fileUri = await FileSystem.getContentUriAsync(selectedDocuments[0].uri);
+      // const fileUri = await FileSystem.getContentUriAsync(selectedDocuments[0].uri);
+      const fileUri = await FileSystem.getContentUriAsync(`${FileSystem.cacheDirectory}output.pdf`);
       // console.log(selectedDocuments[0].uri);
 
       await IntentLauncher.startActivityAsync('android.intent.action.VIEW', {
@@ -23,6 +24,7 @@ export default function ImportDocsView() {
         flags: 1, // FLAG_GRANT_READ_URI_PERMISSION
         type: 'application/pdf',
       });
+      
     } catch (e) {
       console.log(e);
     }
