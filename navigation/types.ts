@@ -12,3 +12,4 @@ export type HomeStackParamList = {
   Document: undefined;
   CameraScannerScreen: undefined;
 };
+

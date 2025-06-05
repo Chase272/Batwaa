@@ -13,6 +13,7 @@ import Fontisto from '@expo/vector-icons/Fontisto';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeStack } from 'navigation/HomeStack';
 import ImportDocsView from 'Views/ImportDocsView';
+import ImportDocumentForm from 'components/ImportDocumentForm';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -47,7 +48,8 @@ export default function App() {
                 <Fontisto name="plus-a" size={size} color={focused ? '#2196f3' : color} />
               ),
             }}
-            component={ImportDocsView}
+            // component={ImportDocsView}
+            component={ImportDocumentForm}
           />
           <Tab.Screen
             name="Documents"
