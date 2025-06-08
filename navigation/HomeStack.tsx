@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeView } from 'Views/HomeView';
 import { Text } from 'react-native';
-import { RootStackParamList } from 'navigation/types';
+import { RootStackParamList } from 'types/navigation';
 import {
   useFonts,
   Poppins_400Regular,

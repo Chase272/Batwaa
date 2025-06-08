@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from 'navigation/types';
+import { RootStackParamList } from 'types/navigation';
 import React, { useState, useEffect } from 'react';
 import { Image, Text, View } from 'react-native';
 import DocumentScanner, { ScanDocumentResponse } from 'react-native-document-scanner-plugin';

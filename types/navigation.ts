@@ -1,6 +1,8 @@
+import { FileMeta } from "types/file";
+
 export type RootStackParamList = {
   Home: undefined;
-  Document: undefined;
+  Document: { document: FileMeta };
   Documents: undefined;
   Import_Documents: undefined;
   HomeScreen: undefined | { screen: keyof HomeStackParamList };

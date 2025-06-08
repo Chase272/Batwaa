@@ -6,3 +6,7 @@ export type FileMeta = {
   createdAt: string;        // ISO date string
   encrypted?: boolean;      // Optional flag if the file is encrypted
 };
+
+export type GroupedDocuments = {
+  [category: string]: FileMeta[];
+};

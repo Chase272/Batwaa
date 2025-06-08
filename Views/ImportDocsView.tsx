@@ -4,7 +4,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import * as IntentLauncher from 'expo-intent-launcher';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from 'navigation/types';
+import { RootStackParamList } from 'types/navigation';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ImportDocsView() {
@@ -24,7 +24,6 @@ export default function ImportDocsView() {
         flags: 1, // FLAG_GRANT_READ_URI_PERMISSION
         type: 'application/pdf',
       });
-      
     } catch (e) {
       console.log(e);
     }
