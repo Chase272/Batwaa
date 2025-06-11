@@ -1,5 +1,5 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { WelcomeComponent } from 'components/WelcomeComponent';
 import { SearchComponent } from 'components/SearchComponent';
@@ -8,6 +8,7 @@ import { DocumentGroupComponent } from 'components/DocumentGroupComponent';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FileMeta, GroupedDocuments } from 'types/file';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const HomeView = () => {
   const [DocumentByGroups, setDocumentByGroups] = useState<GroupedDocuments>();
@@ -35,20 +36,22 @@ export const HomeView = () => {
 
   useEffect(() => {
     getDocumentsFromStorage();
-  }, []);
+  }, [DocumentByGroups]);
 
   return (
-    <SafeAreaView className="bg-white px-3">
-      <WelcomeComponent />
-      <SearchComponent />
-      {DocumentByGroups &&
-        Object.keys(DocumentByGroups).map((value, index) => (
-          <DocumentGroupComponent
-            key={index}
-            group_name={value}
-            documents={DocumentByGroups[value]}
-          />
-        ))}
+    <SafeAreaView className="flex-1">
+      <ScrollView className="bg-white px-3">
+        <WelcomeComponent />
+        <SearchComponent />
+        {DocumentByGroups &&
+          Object.keys(DocumentByGroups).map((value, index) => (
+            <DocumentGroupComponent
+              key={index}
+              group_name={value}
+              documents={DocumentByGroups[value]}
+            />
+          ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };

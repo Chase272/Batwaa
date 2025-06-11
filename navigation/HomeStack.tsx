@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeView } from 'Views/HomeView';
+import { HomeView } from 'Views/HomeTabView';
 import { Text } from 'react-native';
-import { RootStackParamList } from 'types/navigation';
+import { HomeStackParamList, RootStackParamList } from 'types/navigation';
 import {
   useFonts,
   Poppins_400Regular,
@@ -12,8 +12,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DocumentView } from 'Views/DocumentView';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CameraScannerView } from 'Views/CameraScannerView';
+import ImportDocumentModal from 'components/ImportDocumentModal';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 export const HomeStack = () => {
   return (
@@ -24,6 +25,11 @@ export const HomeStack = () => {
         options={{ headerShown: false }}
         name="CameraScannerScreen"
         component={CameraScannerView}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="ImportDocument"
+        component={ImportDocumentModal}
       />
     </Stack.Navigator>
   );
