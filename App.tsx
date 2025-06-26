@@ -9,13 +9,60 @@ import './global.css';
 import { NavigationContainer } from '@react-navigation/native';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeStack } from 'navigation/HomeStack';
-import ImportDocumentForm from 'components/ImportDocumentForm';
-import ImportDocumentModal from 'components/ImportDocumentModal';
-import SettingsTabView from 'Views/SettingsTabView';
+import { HomeStack } from 'navigation/tabs/HomeStack';
+import { ImportDocumentTab } from 'navigation/tabs/ImportDocumentTab';
+import { SettingsTab } from 'navigation/tabs/SettingsTab';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import { Image, TouchableOpacity, View } from 'react-native';
 const Tab = createBottomTabNavigator<RootStackParamList>();
+
+export const CustomTabBarButton = ({
+  children,
+  onPress,
+}: {
+  children: React.ReactNode;
+  onPress: (e: any) => void;
+}) => (
+  <View
+    className="mt-[-45] h-[140] items-center justify-start rounded-full border-[1px] border-[#2196f3] bg-white pt-10  "
+    // style={{
+    //   top: -45,
+    //   padding: 5,
+    //   paddingTop: 36,
+    //   borderTopColor: '#2196f3',
+    //   borderRadius: 100,
+    //   borderColor: 'red',
+    //   borderWidth: 1,
+    //   height: 140,
+    //   justifyContent: 'flex-start',
+    //   alignItems: 'center',
+    // }}
+  >
+    <View
+      style={{
+        paddingHorizontal: 30,
+        paddingBottom: 35,
+        borderRadius: 17,
+        backgroundColor: 'white',
+      }}>
+      <TouchableOpacity
+        style={{
+          borderRadius: 100,
+          top: -20,
+          width: 80,
+          height: 80,
+          paddingTop: 14,
+          borderColor: '#cc7e65',
+          borderWidth: 5,
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+        }}
+        onPress={onPress}>
+        {children}
+      </TouchableOpacity>
+    </View>
+  </View>
+);
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,10 +74,21 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="HomeScreen" screenOptions={{ headerShown: false }}>
+        <Tab.Navigator
+          initialRouteName="HomeTab"
+          screenOptions={{
+            headerShown: false,
+            tabBarStyle: {
+              backgroundColor: 'white',
+              paddingTop: 7,
+              height: '8%',
+              borderColor: 'red',
+            },
+          }}>
           <Tab.Screen
-            name="HomeScreen"
+            name="HomeTab"
             options={{
+              tabBarLabel: 'Home',
               tabBarIcon: ({ focused, color, size }) => (
                 <Fontisto name="home" size={size} color={focused ? '#2196f3' : color} />
               ),
@@ -39,23 +97,27 @@ export default function App() {
             component={HomeStack}
           />
           <Tab.Screen
-            name="Import_Documents"
+            name="ImportDocumentTab"
+            component={ImportDocumentTab}
             options={{
+              tabBarLabel: 'Import',
               tabBarIcon: ({ focused, color, size }) => (
-                <Fontisto name="plus-a" size={size} color={focused ? '#2196f3' : color} />
+                <Fontisto name="upload" size={size} color={focused ? '#2196f3' : color} />
+              ),
+              tabBarButton: (props) => (
+                <CustomTabBarButton {...props} onPress={props.onPress ?? (() => {})} />
               ),
             }}
-            component={ImportDocumentForm}
-            // component={ImportDocumentModal}
           />
           <Tab.Screen
-            name="Settings"
+            name="SettingsTab"
             options={{
+              tabBarLabel: 'Settings',
               tabBarIcon: ({ focused, color, size }) => (
                 <Fontisto name="spinner-cog" size={size} color={focused ? '#2196f3' : color} />
               ),
             }}
-            component={SettingsTabView}
+            component={SettingsTab}
           />
         </Tab.Navigator>
       </NavigationContainer>

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, Pressable } from 'react-native';
 
-const SettingsTabView = () => {
+export const SettingsTab = () => {
   const clearDocs = async () => {
     await AsyncStorage.clear();
 
@@ -17,5 +17,3 @@ const SettingsTabView = () => {
     </View>
   );
 };
-
-export default SettingsTabView;

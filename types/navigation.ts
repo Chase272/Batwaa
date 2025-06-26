@@ -2,18 +2,15 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 import { FileMeta } from 'types/file';
 
 export type RootStackParamList = {
-  Home: undefined;
   Document: { document: FileMeta };
-  Documents: undefined;
-  Import_Documents: undefined;
-  HomeScreen: NavigatorScreenParams<HomeStackParamList>;
-  Settings: undefined;
-
-  CameraScannerScreen: undefined;
+  documents: undefined;
+  ImportDocumentTab: undefined;
+  HomeTab: NavigatorScreenParams<HomeStackParamList>;
+  SettingsTab: undefined;
 };
 export type HomeStackParamList = {
-  Home: undefined;
-  Document: undefined;
+  HomeScreen: undefined;
+  DocumentScreen: undefined;
   CameraScannerScreen: undefined;
-  ImportDocument: { document_uri: string; file_name?: string };
+  ImportDocumentFormScreen: { document_uri: string; file_name?: string };
 };

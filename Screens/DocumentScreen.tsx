@@ -6,7 +6,7 @@ import * as IntentLauncher from 'expo-intent-launcher';
 import * as FileSystem from 'expo-file-system';
 import { RootStackParamList } from 'types/navigation';
 
-export const DocumentView = () => {
+export const DocumentScreen = () => {
   const [DocNumber, setDocNumber] = useState<string>('');
   const [Name, setName] = useState<string>('');
   const [DOB, setDOB] = useState<Date>();

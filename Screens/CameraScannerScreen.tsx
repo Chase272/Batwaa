@@ -7,13 +7,13 @@ import DocumentScanner, { ScanDocumentResponse } from 'react-native-document-sca
 import { createPdf } from 'react-native-images-to-pdf';
 import * as FileSystem from 'expo-file-system';
 
-export const CameraScannerView = () => {
+export const CameraScannerScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useFocusEffect(
     useCallback(() => {
       const onBackPress = () => {
-        navigation.navigate('Home');
+        navigation.navigate('HomeTab', { screen: 'HomeScreen' });
         return true;
       };
 
@@ -41,14 +41,14 @@ export const CameraScannerView = () => {
 
         // console.log(result);
 
-        navigation.navigate('HomeScreen', {
-          screen: 'ImportDocument',
+        navigation.navigate('HomeTab', {
+          screen: 'ImportDocumentFormScreen',
           params: {
             document_uri: `${FileSystem.cacheDirectory}ScannedOutput.pdf`,
           },
         });
       } else {
-        navigation.navigate('Import_Documents');
+        navigation.navigate('ImportDocumentTab');
       }
     } catch (error) {
       console.error('Scan error:', error);

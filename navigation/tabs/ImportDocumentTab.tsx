@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'types/navigation';
 
-function ImportDocumentForm() {
+export const ImportDocumentTab = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const pickDocuments = async () => {
     try {
@@ -14,15 +14,17 @@ function ImportDocumentForm() {
       });
 
       if (!result.canceled) {
-
         // console.log(result);
         const successResult: DocumentPicker.DocumentPickerSuccessResult = result;
         // setSelectedDocuments(successResult.assets);
 
         // console.log(successResult.assets[0].uri);
-        navigation.navigate('HomeScreen', {
-          screen: 'ImportDocument',
-          params: { document_uri: successResult.assets[0].uri , file_name: successResult.assets[0].name },
+        navigation.navigate('HomeTab', {
+          screen: 'ImportDocumentFormScreen',
+          params: {
+            document_uri: successResult.assets[0].uri,
+            file_name: successResult.assets[0].name,
+          },
         });
       }
     } catch (e) {
@@ -31,7 +33,7 @@ function ImportDocumentForm() {
   };
 
   const handleScanByCamera = () => {
-    navigation.navigate('HomeScreen', { screen: 'CameraScannerScreen' });
+    navigation.navigate('HomeTab', { screen: 'CameraScannerScreen' });
   };
 
   return (
@@ -47,6 +49,4 @@ function ImportDocumentForm() {
       </Pressable>
     </>
   );
-}
-
-export default ImportDocumentForm;
+};

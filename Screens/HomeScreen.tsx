@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FileMeta, GroupedDocuments } from 'types/file';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const HomeView = () => {
+export const HomeScreen = () => {
   const [DocumentByGroups, setDocumentByGroups] = useState<GroupedDocuments>();
 
   function groupDocumentsByCategory(documentsArr: FileMeta[]) {

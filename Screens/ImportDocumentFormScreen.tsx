@@ -17,10 +17,10 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList, RootStackParamList } from 'types/navigation';
 
-function ImportDocumentModal() {
-  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+export const ImportDocumenFormScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const route = useRoute<RouteProp<HomeStackParamList, 'ImportDocument'>>();
+  const route = useRoute<RouteProp<HomeStackParamList, 'ImportDocumentFormScreen'>>();
 
   const { document_uri, file_name } = route.params;
   const [form, setForm] = useState({ name: '', group: '', file: document_uri });
@@ -49,7 +49,7 @@ function ImportDocumentModal() {
 
   const saveDocuments = async () => {
     await saveFileMetadata(document_uri, form.group, form.name);
-    navigation.navigate('Home');
+    navigation.navigate('HomeTab', { screen: 'HomeScreen' });
     setForm({ name: '', group: '', file: '' });
   };
 
@@ -96,6 +96,4 @@ function ImportDocumentModal() {
       {/* </Modal> */}
     </>
   );
-}
-
-export default ImportDocumentModal;
+};
